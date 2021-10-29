@@ -1,5 +1,6 @@
-# Java
-## 스레드(thread)의 상태
+#  자바(Java)
+
+## 🌟스레드(thread)의 상태
 자바의 스레드는 임의의 시점에서 아래의 상태 중 하나로 존재합니다.
 
 1. New
@@ -35,3 +36,22 @@
    - `segmentation`(?) 실패 또는 처리되지 않은 예외와 같은 비정상적인 오류 이벤트가 발생했기 때문입니다.
 
    `terminated` 상태에 있는 스레드는 더이상 CPU cycle을 소비하지 않습니다.
+
+### 👉 자바 코드로 스레드의 상태 구현하기
+
+Java에서 현재 스레드의 상태를 얻는 방법은 `Thread.getState()` 메서드를 사용하는 것입니다. 자바는 `java.lang.Thread.State` 라는 클래스를 Enum으로 선언하여, 스레드의 상태를 정의합니다.
+
+1. `Thread.State NEW`
+2. `Thread.State RUNNABLE`
+3. `Thread.State BLOCKED`
+4. `Thread.State WAITING`
+5. `Thread.State TIMED_WAITING`
+   - timeout이 없는 `Object.wait`
+   - timeout이 없는 `Thread.join`
+   - `LockSupport.park`
+6. `Thread.State TERMINATED`
+   - `Thread.sleep`
+   - timeout이 있는 `Object.wait`
+   - timeout이 있는 `Thread.join`
+   - `LockSupport.parkNanos`
+   - `LockSupport.parkUntil`
